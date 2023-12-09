@@ -1,13 +1,13 @@
 # Lyrics Generating RNN
 
 ## Overview
-In this project, we were tasked with building an RNN-based model that is trained on songs' lyrics and MIDI data of the songs' music. The goal is to create a model that given a seed word, and MIDI data will generate the rest of the lyrics for that song.
+In this project, I aimed to build an RNN-based model trained on both the lyrics and MIDI data of various songs. The objective was to create a model that, when given a seed word and MIDI data, generates the remaining lyrics for a song.
 
 ## Preprocessing
-The preprocessing had two main parts, Lyrics handling and MIDI data. Punctuations were removed from the lyrics before they were tokenized. Each song has MIDI data, so I extracted features from the MIDI file and feature-engineered some more custom features so each sample had tokenized lyrics and a set of unique MIDI features. Eventually, using a word2vec model each word from the lyrics of a given song was represented in an embeddings vector that was concatenated with the MIDI features - resulting in a 305 entries vector.
+The preprocessing consisted of two main parts: handling the lyrics and processing the MIDI data. I removed punctuation from the lyrics before tokenization. For each song, I extracted features from its MIDI file and further engineered custom features. This process led to each sample comprising tokenized lyrics paired with a unique set of MIDI features. Ultimately, using a word2vec model, I represented each word from a song's lyrics as an embedding vector. This vector was then concatenated with the MIDI features, resulting in a 305-entry vector for each sample.
 
 ## Training
-The model was trained for 25 epochs, using the following architecture:
+The model was trained for 25 epochs, with the following architecture:
  - (gru_I): GRU(305, 1024, batch_first=True)
  - (gru_II): GRU(1024, 1024, batch_first=True)
  - (dropout): Dropout(p=0.3, inplace=False)
